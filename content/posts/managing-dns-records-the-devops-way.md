@@ -31,7 +31,7 @@ See the [DnsControl Getting Started guide](https://stackexchange.github.io/dnsco
 
 I really like DnsControl for various reasons:
 
-- It allows you to define DNS records as code, which means you can write scripts that automatically generate the required code (see [dnsconfig.sh](https://github.com/mhutter/infra-kubernetes/blob/a45ae424589d1cfb44314900f4565832389a7265/scripts/dnsconfig.sh) for an example)
+- It allows you to define DNS records as code, which means you can write scripts that automatically generate the required code.
 - Having your config as code means you can [put it in Git](https://github.com/mhutter/dns)! I love putting stuff in Git because it makes it so forgiving to try out new stuff when you can easily recover the last working state with a couple of keystrokes.
 - It works with [many different providers](https://stackexchange.github.io/dnscontrol/provider-list), which makes it easy to move from one to another. Not happy with Google anymore? Replace the provider in your `dnsconfig.js` and `dnscontrol push` - done! You can even push your zones to multiple providers at the same time if you want to be on the safe side.
 - When pushing the records, DnsControl will remove any records not in `dnsconfig.js` anymore. This really helps with keeping your zones cleaned up!
