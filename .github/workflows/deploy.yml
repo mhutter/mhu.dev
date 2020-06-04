@@ -26,4 +26,4 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: 'set image deployment/blog blog=docker.io/mhutter/mhu.dev:sha-"${GITHUB_SHA:0:7}"'
+          args: 'set image deployment/blog blog=docker.io/mhutter/mhu.dev:sha-"$(echo $GITHUB_SHA | cut -c 1-7)"'
