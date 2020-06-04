@@ -1,0 +1,24 @@
+---
+name: Build and test
+
+on:
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - '**'
+      - '!master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: srt32/hugo-action@master
+      - uses: chabad360/htmlproofer@master
+        with:
+          directory: ./public
+          arguments: --check-img-http --check-sri --check-html
