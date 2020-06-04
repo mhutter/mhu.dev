@@ -22,9 +22,10 @@ Go to your [Github Application Settings](https://github.com/settings/application
 
 ## Step 2: Encrypt the token
 Even the Token is not something to post on your Twitter.
-{% highlight bash %}
+
+```bash
 travis encrypt -a - GITHUB_TOKEN=your_generated_token
-{% endhighlight %}
+```
 
 Your token will be encrypted and automatically added to your .travis.yml file.
 

@@ -7,7 +7,9 @@ tags: [cron]
 
 One thing I still cannot remember after YEARS of usage is the scheduling syntax for cronjobs. To help with this I usually paste the following into each crontab:
 
-    # m h dom mon dow cmd
+```plain
+# m h dom mon dow cmd
+```
 
 - `m`: minute
 - `h`: hour
