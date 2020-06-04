@@ -1,0 +1,82 @@
+/* CSS Reset from various sources. Just Google it! */
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* some help for older browsers */
+article, aside, figure, footer, header, nav, section, details, summary {display: block;}
+strong {font-weight: bold;}
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+/* hand cursor on clickable elements */
+.clickable,
+label, 
+input[type=button], 
+input[type=submit], 
+input[type=file], 
+button {cursor: pointer;}
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {margin: 0;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+small {font-size: 0.8em;}
+
+/**
+ * Own stuff starts here!
+ */
+
+html {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: #666;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {margin-bottom: 10px;}
+ul {list-style: none;}
+
+a {
+  text-decoration: underline;
+  color: #333;
+}
+a:visited {color: #666;}
+
+.row {
+  max-width: 626px;
+  padding: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+}
+
+body * + * {
+  margin-top: 1.5rem;
+}
+
+/* Class for demoing Boxes */
+.group {
+  padding: 10px;
+  border: 4px solid hsl(0, 0%, 50%);
+}
+
+/* Class for faking 200x200px images.
+For an Alternative see http://placehold.it */
+.img {
+  width: 100px;
+  height: 100px;
+  background: hsl(60, 97%, 48%);
+}
+/* make some nice! */
+.group .img {margin-right: 10px;}

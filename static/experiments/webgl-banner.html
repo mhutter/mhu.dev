@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebGL Banner</title>
+  <style media="screen">
+    #main { background: red; }
+  </style>
+</head>
+<body>
+  <canvas id="main" width="1500" height="500"></canvas>
+  <script type="text/javascript">
+    var canvas = document.getElementById('main'),
+            gl = canvas.getContext('2d'),
+      gradient = gl.createLinearGradient(0, 0, 1500, 500);
+
+    gradient.addColorStop(0, '#2179d3');
+    gradient.addColorStop(1, '#2bbb21');
+    gl.fillStyle = gradient;
+    gl.fillRect(0, 0, 1500, 500);
+  </script>
+</body>
+</html>
