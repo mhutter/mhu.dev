@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: blog
+          image: docker.io/mhutter/mhu.dev:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "1"
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+          ports:
+            - name: http
+              containerPort: 8080

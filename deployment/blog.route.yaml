@@ -1,0 +1,30 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: blog
+  annotations:
+    kubernetes.io/tls-acme: "true"
+spec:
+  host: mhu.dev
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  to:
+    kind: Service
+    name: blog
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: blog-www
+  annotations:
+    kubernetes.io/tls-acme: "true"
+spec:
+  host: www.mhu.dev
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  to:
+    kind: Service
+    name: blog
