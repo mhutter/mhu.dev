@@ -13,7 +13,7 @@ RUN set -x && \
 COPY . /src/
 RUN hugo
 
-FROM docker.io/library/caddy:2.2.1
+FROM docker.io/library/caddy:2.3.0
 
 ENV PORT=8080
 EXPOSE $PORT
