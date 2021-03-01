@@ -48,6 +48,23 @@ h6 {
   color: var(--color-highlight);
 }
 
+hr {
+  border: none;
+  border-top: 1px solid var(--color-muted);
+}
+
+blockquote {
+  background-color: #1c1c1c;
+  margin: 0em;
+  padding: 1em;
+  padding-left: 2em;
+  border-left: 0.4em solid #8a8a8a;
+}
+
+dt {
+  font-weight: bold;
+}
+
 *:not(pre) > code {
   background-color: #202020;
   border: 1px solid #151515;
