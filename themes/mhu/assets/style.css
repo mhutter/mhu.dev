@@ -65,6 +65,10 @@ dt {
   font-weight: bold;
 }
 
+*:not(.highlight) > pre {
+  color: #8a8a8a;
+  background-color: #1c1c1c;
+}
 *:not(pre) > code {
   background-color: #202020;
   border: 1px solid #151515;
