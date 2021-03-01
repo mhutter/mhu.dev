@@ -1,0 +1,8 @@
+<header class="site-header">
+  <h1 class="site-title">
+    <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Title }}</a>
+  </h1>
+  {{ with .Site.Params.subtitle }}
+  <span class="site-subtitle">{{ . }}</span>
+  {{ end }}
+</header>

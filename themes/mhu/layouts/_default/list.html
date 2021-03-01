@@ -1,0 +1,20 @@
+{{ define "main" }}
+{{ partial "header.html" . }}
+<main id="main">
+  {{ with .Content}}
+  <div class="content">{{ . }}</div>
+  {{ end }}
+
+  <h1>{{ i18n .Title }}</h1>
+  {{ range .Pages }}
+  <article class="post-summary">
+    <header>
+      <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+    </header>
+    <div>
+      {{ .Summary | safeHTML }}
+    </div>
+  </article>
+  {{ end }}
+</main>
+{{ end }}

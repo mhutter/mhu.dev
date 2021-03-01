@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ partial "header.html" . }}
+{{ with .Content}}
+<div class="content">{{ . }}</div>
+{{ end }}
+
+<h2>Blog posts</h2>
+<ul class="posts">
+  {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{ range (.Paginate $pages).Pages }}
+  <li>
+    <time datetime="{{ .PublishDate.Format " 2006-01-02 15:04:05" }}">{{ .PublishDate.Format "2006-01-02" }}</time>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}

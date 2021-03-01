@@ -1,0 +1,80 @@
+:root {
+  --brand-color: #0080ff;
+  --text-color: #ccc;
+  --text-muted: #888;
+}
+
+body {
+  background: #232323;
+  color: var(--text-color);
+  font-family: "Source Code Pro", monospace;
+  font-size: 14pt;
+}
+a {
+  color: var(--brand-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--brand-color);
+  text-shadow: 0 0 2px var(--brand-color), 0 0 5px var(--brand-color);
+}
+strong,
+b,
+em,
+i {
+  color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--brand-color);
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 4rem;
+}
+.page-title {
+  color: var(--brand-color);
+}
+.page-subtitle {
+  font-size: 1.4rem;
+  color: var(--text-muted);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.contact {
+  list-style: none;
+  padding-left: 0;
+}
+.contact li {
+  padding: 0.4rem;
+}
+.contact .fab {
+  color: var(--brand-color);
+}
+
+.page-footer {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 4rem 0;
+  color: var(--text-muted);
+}
+.page-footer .fas {
+  color: var(--text-muted);
+}
+.page-footer a {
+  color: var(--text-muted);
+  text-decoration: underline;
+}

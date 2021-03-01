@@ -1,6 +1,5 @@
 ---
 title: Experiments
-menu: main
 ---
 
 Below you have a list of various demos, experiments and examples related to **HTML5**, **CSS** and/or **JavaScript**.
