@@ -5,7 +5,7 @@
   {{ with .Params.tags }}
   |
   {{ range . }}
-  <a class="tag" href="{{ "tags/" | absLangURL }}{{ . | urlize }}">#{{ . }}</a>
+  <a class="tag" href="{{ "tags/" | relLangURL }}{{ . | urlize }}">#{{ . }}</a>
   {{ end }}
   {{ end }}
 </p>
