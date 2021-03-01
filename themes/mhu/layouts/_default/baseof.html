@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {{ hugo.Generator }}
   <title>{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}</title>
-  <link rel="stylesheet" href="/css/style.css">
+  {{ $style := resources.Get "style.css" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ with .Site.Params.favicon }}
   <link rel="shortcut icon" href="{{ relURL . }}">
   {{ end }}
