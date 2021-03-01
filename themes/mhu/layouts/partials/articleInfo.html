@@ -1,0 +1,11 @@
+<p class="meta">
+  {{ with .Date }}
+  <time>{{ dateFormat "2006-01-02" . }}</time>
+  {{ end }}
+  {{ with .Params.tags }}
+  |
+  {{ range . }}
+  <a class="tag" href="{{ "tags/" | absLangURL }}{{ . | urlize }}">#{{ . }}</a>
+  {{ end }}
+  {{ end }}
+</p>

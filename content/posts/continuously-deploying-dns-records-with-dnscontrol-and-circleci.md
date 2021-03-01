@@ -74,21 +74,21 @@ Unfortunately this did not work as expected. Google Cloud uses Private Key authe
 So instead I came up with something else:
 
 0. Create the `creds.json` file locally
-0. `base64` encode the file
-0. On CircleCI, set an env var `$CREDS` to the encoded string
-0. During builds, decode and write the data to `creds.json`
+1. `base64` encode the file
+2. On CircleCI, set an env var `$CREDS` to the encoded string
+3. During builds, decode and write the data to `creds.json`
 
 As only the `preview` and `push` commands require authentication, we only have to write the file during the `preview` and `deploy` jobs, for example:
 
 ```yaml
 # ...
-  deploy:
-    docker:
-      - image: stackexchange/dnscontrol
-    steps:
-      - checkout
-      - run: echo "$CREDS" | base64 -d > creds.json
-      - run: dnscontrol push
+deploy:
+  docker:
+    - image: stackexchange/dnscontrol
+  steps:
+    - checkout
+    - run: echo "$CREDS" | base64 -d > creds.json
+    - run: dnscontrol push
 # ...
 ```
 

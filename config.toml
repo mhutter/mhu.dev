@@ -1,15 +1,18 @@
 baseURL = "https://mhu.dev/"
 languageCode = "en"
-title = "DevOoops"
+title = "mhutter"
 theme = "mhu"
+enableRobotsTXT = true
 
 [markup]
   [markup.highlight]
-    style = "dracula"
+    style = "solarized-dark256"
     tabWidth = 2
 
 [params]
+  subtitle = "DevOoops"
   favicon = "/img/mh256.png"
+  logo = "/img/mh256.png"
   description = "Online presence of Manuel Hutter"
   twitter = "https://twitter.com/dratir"
   github = "https://github.com/mhutter"
