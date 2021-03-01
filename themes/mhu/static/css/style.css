@@ -86,7 +86,7 @@ h6 {
 .contact li {
   padding: 0.4rem;
 }
-.contact .fab {
+.contact i {
   color: var(--color-brand);
 }
 
