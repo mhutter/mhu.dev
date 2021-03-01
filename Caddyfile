@@ -1,5 +1,0 @@
-:{$PORT}
-
-root * /public
-encode zstd gzip
-file_server
