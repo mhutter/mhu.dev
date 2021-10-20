@@ -92,7 +92,6 @@ deploy:
 # ...
 ```
 
-The final version of my `.circleci/config.yml` file can be seen [on GitHub](https://github.com/mhutter/dns/blob/09dcf6fc0aab3cf7fe0929edd19099739d5ab690/.circleci/config.yml).
 
 ## Bonus
 
