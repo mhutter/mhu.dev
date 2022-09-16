@@ -1,11 +1,16 @@
+DOCKER ?= podman
+
 test: htmlproofer
 
+.PHONY: htmlproofer
 htmlproofer: public
-	docker run -it --rm -v "$$(pwd)/public:/src" \
-		chabad360/htmlproofer \
-		htmlproofer /src --check-img-http --check-sri --check-html \
-		--http-status-ignore "999"
+	$(DOCKER) run -it --rm -v "$$(pwd)/public:/src" \
+		docker.io/chabad360/htmlproofer \
+		htmlproofer /src \
+		--check-sri=true \
+		--ignore-status-codes=999
 
+.PHONY: public
 public:
 	hugo
 
