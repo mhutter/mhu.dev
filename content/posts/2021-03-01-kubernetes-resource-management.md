@@ -7,7 +7,7 @@ summary: I’ll explain what scheduling and resource management exactly is, how 
 
 Scheduling and resource management is a topic many Kubernetes users seem to struggle with, even though it is vital to understand it and correctly configure your workload to ensure optimal resource usage and application availability. In this article, I'll explain what scheduling and resource management exactly is, how you configure and use them, and go into some best practices.
 
-I have written this article as part of my work at [VSHN AG](https://www.vshn.ch/). It was first published in the [VSHN Knowledge Base](https://kb.vshn.ch/rancher/explanations/kubernetes_resource_management.html). By the way, if you like this kind of stuff, [we're usually hiring](https://www.vshn.ch/en/jobs/)!
+I have written this article as part of my work at [VSHN AG](https://www.vshn.ch/). It was first published in the [VSHN Knowledge Base](https://kb.vshn.ch/cloud-kubernetes/explanations/kubernetes_resource_management.html). By the way, if you like this kind of stuff, [we're usually hiring](https://www.vshn.ch/en/jobs/)!
 
 **Target audience**
 : This is a technical article targeting developers deploying applications onto Kubernetes, as well as cluster administrators.

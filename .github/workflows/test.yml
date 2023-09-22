@@ -8,17 +8,15 @@ on:
   push:
     branches:
       - '**'
-      - '!master'
+      - '!main'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: recursive
       - uses: srt32/hugo-action@master
-      - uses: chabad360/htmlproofer@master
+      - uses: chabad360/htmlproofer@v2
         with:
           directory: ./public
-          arguments: --check-sri=true --http-status-ignore=999
+          arguments: --check-sri --only-4xx
