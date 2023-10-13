@@ -14,7 +14,6 @@ enableRobotsTXT = true
   favicon = "/img/mh256.png"
   logo = "/img/mh256.png"
   description = "Online presence of Manuel Hutter"
-  twitter = "https://twitter.com/dratir"
   github = "https://github.com/mhutter"
   stackoverflow = "https://stackoverflow.com/users/405454/mhutter"
   recent_posts_number = 20
