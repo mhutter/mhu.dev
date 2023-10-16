@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">This is my blog maed with Zola.</h1>
-<p>Click <a href="{{ get_url(path='@/blog/_index.md') }}">here</a> to see my posts.</p>
+<h1 class="title"><a href="/">mhu.dev</a></h1>
+<p class="subtitle">DevOoops</p>
+
+
+<h2>Recent Posts</h2>
+
+{% set posts = get_section(path="posts/_index.md") %}
+{% for page in posts.pages | slice(end=3) %}
+<h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
+<p>{{ page.description }}</p>
+{% endfor %}
+</ul>
+
+<p><a href="{{ get_url(path='@/posts/_index.md') }}">All Blog posts</a></p>
+
 {% endblock content %}
