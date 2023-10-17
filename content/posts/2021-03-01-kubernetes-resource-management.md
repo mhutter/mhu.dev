@@ -68,22 +68,22 @@ Configuring resource requests & limits is done by setting the `.spec.containers[
 
 _Example Pod_
 
-```yaml
-apiVersion = v1
-kind = Pod
+```yaml,hl_lines=9-15
+apiVersion: v1
+kind: Pod
 metadata:
-  name = resource-example
+  name: resource-example
 spec:
   containers:
-    - name = app
-      image = app
+    - name: app
+      image: app
       resources:
         requests:
-          cpu = "100m" # <1>
-          memory = "128Mi" # <2>
+          cpu: "100m" # <1>
+          memory: "128Mi" # <2>
         limits:
-          cpu = "1" # <3>
-          memory = "1Gi" # <4>
+          cpu: "1" # <3>
+          memory: "1Gi" # <4>
 ```
 
 1. CPU requests

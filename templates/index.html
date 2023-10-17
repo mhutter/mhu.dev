@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title"><a href="/">mhu.dev</a></h1>
-<p class="subtitle">DevOoops</p>
-
 
 <h2>Recent Posts</h2>
 
@@ -13,6 +10,8 @@
 <p>{{ page.description }}</p>
 {% endfor %}
 </ul>
+
+<hr />
 
 <p><a href="{{ get_url(path='@/posts/_index.md') }}">All Blog posts</a></p>
 
