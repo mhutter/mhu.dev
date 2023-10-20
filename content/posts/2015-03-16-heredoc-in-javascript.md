@@ -5,6 +5,25 @@ description = "Javascript does not like Multiline Strings, but there's a trick!"
 tags = ["javascript"]
 +++
 
+_Update 2023:_ JavaScript now has "native" multiline strings for quite some time:
+
+```js
+const monty = `It's only a model.
+Who's that then?
+On second thoughts, let's not go there.
+It is a silly place.`;
+
+console.log(monty);
+// It's only a model.
+// Who's that then?
+// On second thoughts, let's not go there.
+// It is a silly place.
+```
+
+Original post for context below.
+
+---
+
 Most programming languages have a syntax for defining multiline string literals. Here's an example for Ruby:
 
 ```ruby

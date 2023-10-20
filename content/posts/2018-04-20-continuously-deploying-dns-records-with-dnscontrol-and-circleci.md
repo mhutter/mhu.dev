@@ -7,42 +7,43 @@ tags = ["dns", "ci/cd"]
 
 In the [previous post](@/posts/2018-04-19-managing-dns-records-the-devops-way.md), I gave a quick introduction to [DnsControl](https://stackexchange.github.io/dnscontrol/), what it does and how it works. In this post, I'll show you how to continuously deploy your changes to [Google Cloud DNS](https://cloud.google.com/dns/) using [CircleCI](https://circleci.com/).
 
-The goal is to have a Pipeline that works like this = On each push, run `dnscontrol check` to verify the file is valid, `dnscontrol preview` to make sure all configuration is correct (credentials, zones, ...). And if we're on the `master` branch (and the previous steps were succesful) `dnscontrol push` the changes to our DNS provider.
+<!-- more -->
 
-First, we need a container containing `dnscontrol` to run on CircleCI. Luckily for us there is an official one on Docker Hub = [stackexchange/dnscontrol](https://hub.docker.com/r/stackexchange/dnscontrol/).
+The goal is to have a Pipeline that works like this: On each push, run `dnscontrol check` to verify the file is valid, `dnscontrol preview` to make sure all configuration is correct (credentials, zones, ...). And if we're on the `master` branch (and the previous steps were succesful) `dnscontrol push` the changes to our DNS provider.
+
+First, we need a container containing `dnscontrol` to run on CircleCI. Luckily for us there is an official one on Docker Hub: [stackexchange/dnscontrol](https://hub.docker.com/r/stackexchange/dnscontrol/).
 
 Next we need a `.circleci/config.yml` file:
 
 ```yaml
-+++
-version = 2
+version: 2
 
 # Job definitions
 jobs:
   check:
     docker:
-      - image = stackexchange/dnscontrol
+      - image: stackexchange/dnscontrol
     steps:
       - checkout
-      - run = dnscontrol check
+      - run: dnscontrol check
 
   preview:
     docker:
-      - image = stackexchange/dnscontrol
+      - image: stackexchange/dnscontrol
     steps:
       - checkout
-      - run = dnscontrol preview
+      - run: dnscontrol preview
 
   deploy:
     docker:
-      - image = stackexchange/dnscontrol
+      - image: stackexchange/dnscontrol
     steps:
       - checkout
-      - run = dnscontrol push
+      - run: dnscontrol push
 
 # Definitions of the Workflow, our "Pipeline"
 workflows:
-  version = 2
+  version: 2
   check-preview-deploy:
     jobs:
       - check
@@ -51,12 +52,12 @@ workflows:
           requires:
             - check
             - preview
-          filters = # only deploy from master branch
+          filters: # only deploy from master branch
             branches:
-              only = master
+              only: master
 ```
 
-Now we have one problem left = We have to provide the credentials. Fortunately enough, the values in `creds.json` can contain ENV var names which dnscontrol then properly reads from the environment:
+Now we have one problem left: We have to provide the credentials. Fortunately enough, the values in `creds.json` can contain ENV var names which dnscontrol then properly reads from the environment:
 
 ```json
 {
@@ -84,11 +85,11 @@ As only the `preview` and `push` commands require authentication, we only have t
 # ...
 deploy:
   docker:
-    - image = stackexchange/dnscontrol
+    - image: stackexchange/dnscontrol
   steps:
     - checkout
-    - run = echo "$CREDS" | base64 -d > creds.json
-    - run = dnscontrol push
+    - run: echo "$CREDS" | base64 -d > creds.json
+    - run: dnscontrol push
 # ...
 ```
 
@@ -99,23 +100,23 @@ Some people like to be a bit more careful, so they want to manually confirm a de
 
 ```yaml
 workflows:
-  version = 2
+  version: 2
   check-preview-hold-deploy:
     jobs:
       - check
       - preview
       - hold:
-          type = approval
+          type: approval
           requires:
             - check
             - preview
           filters:
             branches:
-              only = master
+              only: master
       - deploy:
-          filters = &only_master
+          filters:
             branches:
-              only = master
+              only: master
 ```
 
 Now the workflow will pause after the `check` and `preview` steps.

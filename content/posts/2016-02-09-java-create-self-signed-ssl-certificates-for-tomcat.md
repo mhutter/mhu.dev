@@ -14,6 +14,10 @@ Make sure you have Java and `keytool` command (ships with Java) installed. If yo
 
 For example, my `keytool` is in `./jdk1.8/bin/`.
 
+If you do not know where to look, use the following commmand:
+
+    find / -name keytool -type f 2>/dev/null
+
 ## Step 1: Generate the keystore and the certificate
 
 Before we begin, a note about the "alias" and the "common name" of the certificate:
@@ -21,30 +25,29 @@ Before we begin, a note about the "alias" and the "common name" of the certifica
 - The **alias** is simply a "label" used by Java to identify a specific certificate in the keystore (a keystore can hold multiple certificates). It has nothing to do with the server name, or the domain name of the Tomcat service.
 - The **common name** (CN) is an attribute of the TLS certificate. Your browser will usually complain if the CN of the certificate and the domain in the URI do not match (but since you're using a self-signed certificate, your browser will probably complain anyway...). HOWEVER, when generating the certificate, the keytool will ask for "your first and last name" when asking for the CN, so keep that in mind. The rest of the attributes are not really that important
 
-So let's generate a strong 4096-bit certificate that is valid for 2 years.
+So let's generate a strong 4096-bit certificate that is valid for 2 years. Adjust `ALIAS` and the path to the key store accordingly
 
 ```sh
-# adjust the path to `keytool`, ALIAS and the path to the keystore accordingly
-./jdk1.8/bin/keytool -genkey -keystore /srv/jakarta/.keystore -alias ALIAS \
+keytool -genkey -keystore /srv/jakarta/.keystore -alias ALIAS \
     -keyalg RSA -keysize 4096 -validity 720
-Enter keystore password = # well, enter something
-Re-enter new password = # same as above
-What is your first and last name?
-  [Unknown]:  example.com # !!! IMPORTANT this is the domain name, NOT YOUR name
-What is the name of your organizational unit?
-  [Unknown]:  # enter something or leave empty
-What is the name of your organization?
-  [Unknown]:  # enter something or leave empty
-What is the name of your City or Locality?
-  [Unknown]:  # enter something or leave empty
-What is the name of your State or Province?
-  [Unknown]:  # enter something or leave empty
-What is the two-letter country code for this unit?
-  [Unknown]:  # enter something or leave empty
-Is CN=example com, OU=Foo, O=Bar, L=City, ST=AA, C=FB correct?
-  [no]:  yes
-Enter key password for <ALIAS>
-    (RETURN if same as keystore password): # Press RETURN
+# Enter keystore password = # well, enter something
+# Re-enter new password = # same as above
+# What is your first and last name?
+#   [Unknown]:  example.com # !!! IMPORTANT this is the domain name, NOT YOUR name
+# What is the name of your organizational unit?
+#   [Unknown]:  # enter something or leave empty
+# What is the name of your organization?
+#   [Unknown]:  # enter something or leave empty
+# What is the name of your City or Locality?
+#   [Unknown]:  # enter something or leave empty
+# What is the name of your State or Province?
+#   [Unknown]:  # enter something or leave empty
+# What is the two-letter country code for this unit?
+#   [Unknown]:  # enter something or leave empty
+# Is CN=example com, OU=Foo, O=Bar, L=City, ST=AA, C=FB correct?
+#   [no]:  yes
+# Enter key password for <ALIAS>
+#     (RETURN if same as keystore password): # Press RETURN
 ```
 
 Great, now the keystore has been created (if it didn't exist already) and your self-signed certificate has been added to it.

@@ -14,13 +14,13 @@ tags = ["linux"]
 
 _Tested under **Ubuntu** and **SLES 11** so far._
 
-## Required Packages
+### Required Packages
 
 install with `apt-get install ...` or similar
 
 * `openssl`
 
-## Steps
+### Steps
 
 ```sh
 # Step 0: Convert the Certificate to PEM format
@@ -46,13 +46,13 @@ ln -s certificate.pem `openssl x509 -hash -noout -in certificate.pem`.0
 
 ## CentOS
 
-## Required Packages
+### Required Packages
 
 install with `yum install ...` or similar
 
 * `ca-certificates`
 
-## Steps
+### Steps
 
 ```sh
 # Enable the CA configuration feature

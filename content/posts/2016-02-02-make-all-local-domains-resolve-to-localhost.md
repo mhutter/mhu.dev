@@ -7,7 +7,7 @@ tags = ["dns", "linux"]
 
 It's time for my yearly blog post, so let's get started!
 
-Some development environments use `*.local`-domains which point to localhost. Creating a hosts-entry for every single domain is not an elegant solution, so let's do something easier = let's use dnsmasq to resolve ALL .local-domains to localhost!
+Some development environments use `*.local`-domains which point to localhost. Creating a hosts-entry for every single domain is not an elegant solution, so let's do something easier: let's use dnsmasq to resolve ALL .local-domains to localhost!
 
 _Tested on CentOS 7, but should work similarly for other Linuxes._
 
@@ -15,7 +15,7 @@ All commands assume you have root privileges. If you are not logged in as `root`
 
 First, make sure **dnsmasq** is installed:
 
-```sh
+```
 yum install dnsmasq
 ```
 
@@ -25,10 +25,10 @@ Ok, now we have to tell dnsmasq to listen for queries. Add the following line to
 listen-address=127.0.0.1
 ```
 
-Next, create a "zone file" for `.local`. Create a file `/etc/dnsmasq.d/dev` and add the following:
+Next, create a "zone file" for `.local`. Create a file `/etc/dnsmasq.d/local` and add the following:
 
 ```
-address=/dev/127.0.0.1
+address=/local/127.0.0.1
 ```
 
 This tells dnsmasq to resolve queries to `*.local` to `127.0.0.1`.
@@ -46,16 +46,15 @@ Ok, now that we set up a local DNS server, let's tell our DHCP client to actuall
 prepend domain-name-servers=127.0.0.1;
 ```
 
-Last step = let the DHCP client apply the new settings:
+Last step: let the DHCP client apply the new settings:
 
-```sh
+```
 dhclient
 ```
 
 And that's it! Let's make a quick test:
 
 ```
-$ grep -i dev /etc/hosts
 $ ping foo.local
 PING foo.local (127.0.0.1) 56(84) bytes of data.
 64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.017 ms

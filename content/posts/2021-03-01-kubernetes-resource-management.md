@@ -9,8 +9,7 @@ Scheduling and resource management is a topic many Kubernetes users seem to stru
 
 I have written this article as part of my work at [VSHN AG](https://www.vshn.ch/). It was first published in the [VSHN Knowledge Base](https://kb.vshn.ch/cloud-kubernetes/explanations/kubernetes_resource_management.html). By the way, if you like this kind of stuff, [we're usually hiring](https://www.vshn.ch/en/jobs/)!
 
-**Target audience**
-: This is a technical article targeting developers deploying applications onto Kubernetes, as well as cluster administrators.
+**Target audience**: This is a technical article targeting developers deploying applications onto Kubernetes, as well as cluster administrators.
 
 ## Resource Requests & Limits on Pods & Containers
 
@@ -122,12 +121,12 @@ Word is that CERN implemented its own scheduler to achieve workload packing (= a
 
 ---
 
-### kube-scheduler
+### `kube-scheduler`
 
 Whenever kube-scheduler sees a new Pod that is not assigned to a Node (indicated by the fact that the Pod's `.spec.nodeName` is not set), it assigns the Pod to a Node in two phases:
 
 Filtering
-: During this phase, the scheduler determines which nodes are eligible for the Pod to be scheduled on. In the beginning, all nodes are candidates. The scheduler then applies various filter plugins, for example = Does the Node fit the Pods `nodeSelector`? Has the Node sufficient resources available? Has the Node any taints that are not tolerated by the pod? Is the Node marked as unschedulable? Does the Pod request any special features, for example a GPU?
+: During this phase, the scheduler determines which nodes are eligible for the Pod to be scheduled on. In the beginning, all nodes are candidates. The scheduler then applies various filter plugins, for example: Does the Node fit the Pods `nodeSelector`? Has the Node sufficient resources available? Has the Node any taints that are not tolerated by the pod? Is the Node marked as unschedulable? Does the Pod request any special features, for example a GPU?
 
 : If after this step no Nodes are left, the Pod will not be assigned to a Node and stay in "Pending" state. An Event is added to the Pod explaining why scheduling failed.
 
@@ -160,11 +159,11 @@ During scheduling, this information is used to determine whether a Pod would "fi
 
 ## Out of resource handling
 
-Before we look into what happens when a node runs out of a resource, we first have to cover another concept = Quality of Service classes
+Before we look into what happens when a node runs out of a resource, we first have to cover another concept: Quality of Service classes
 
 ### QoS Classes
 
-Kubernetes knows three QoS classes = "Guaranteed", "Burstable" and "BestEffort".
+Kubernetes knows three QoS classes: "Guaranteed", "Burstable" and "BestEffort".
 
 When a Pod starts, its QoS class is determine based on the resource requests and limits of its containers:
 
@@ -193,7 +192,7 @@ The Pod may use resources available on a _best effort_ basis.
 
 Again, since **CPU** is a "compressible" resource, the Kubelet does not act on CPU starvation. Each container will have the CPU resources available that it _requested_ - yes, this means that "BestEffort" Pods really get into a tight spot...
 
-Out of **Memory** handling however triggers an _eviction_. While evictions (and how they can be configured) would cover a whole blog post on its own, it usually ends with Pods being terminated and moved to different nodes. This is where the QoS classes play an important role = They decide, _who_ gets killed:
+Out of **Memory** handling however triggers an _eviction_. While evictions (and how they can be configured) would cover a whole blog post on its own, it usually ends with Pods being terminated and moved to different nodes. This is where the QoS classes play an important role: They decide, _who_ gets killed:
 
 First in line are pods that exceed their memory requests are killed, based on their memory usage in relation to their memory requests. Since "BestEffort" pods do not have any requests at all, they will be killed first. However, "Burstable" Pods might also be killed if they exceed their requests.
 

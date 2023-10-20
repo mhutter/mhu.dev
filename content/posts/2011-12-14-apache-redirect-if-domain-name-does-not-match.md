@@ -5,6 +5,8 @@ description = "Apache RewriteRule for requests that do NOT match a domain name"
 tags = ["apache"]
 +++
 
+_Note: This post is mostly kept for nostalgic reasons :-)_
+
 Redirect everything to dratir.ch:
 
 ```conf

@@ -5,7 +5,9 @@ summary = "Primer on how to use Git submodules"
 tags = ["git"]
 +++
 
-I often struggle when working with Git Submodules, so here’s a quick primer with all the important information you need!
+Here's a quick primer on how to work with Git submodules!
+
+<!-- more -->
 
 ## Adding Submodules to your project
 
@@ -24,7 +26,7 @@ git clone repo_url --recursive
 
 This will first clone the repo, and then initialize and update (read on) all submodules.
 
-If you forget the `--recursive` flag when cloning, or when pulling in commits that add a Submodule, you have to do two steps = initialize, update:
+If you forget the `--recursive` flag when cloning, or when pulling in commits that add a Submodule, you have to do two steps: initialize, update:
 
 ```sh
 git submodule init
@@ -33,7 +35,7 @@ git submodule update
 
 This will create the required directories and then pull in the other repos.
 
-### Update Submodules
+## Update Submodules
 
 Easy:
 

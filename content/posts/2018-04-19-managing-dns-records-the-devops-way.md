@@ -8,13 +8,15 @@ tags = ["dns", "devops"]
 
 Managing DNS records has always been a bit of a hassle for me. Most DNS providers have some sort of web gui where you have to manually fiddle in all records manually. Besides the fact that this is really tedious, this is quite error-prone. Humans are horrible at doing manual work! So let's automate this!
 
+<!-- more -->
+
 My first iteration was moving everything to AWS Route53. Amazon provides APIs for all of their services, but unfortunately they are horribly complicated!
 
-So in the next iteration I moved everything to Google Cloud. They also provides APIs and they're much easier to use! You can build a DynDNS-like service in [a couple of lines](https://github.com/srueg/dynamic-cloud-dns).
+So in the next iteration I moved everything to Google Cloud. They also provide APIs, and they're much easier to use! You can build a DynDNS-like service in [a couple of lines](https://github.com/srueg/dynamic-cloud-dns).
 
 The third iteration was when I discovered [DnsControl](https://dnscontrol.org/). It allows you to define DNS records using a small DSL, and then push those changes to your DNS providers using a small CLI tool.
 
-In a nutshell, it works like this = You define your DNS zones and records in a file called `dnsconfig.js`, provide credentials for your DNS provider, and then run `dnsconfig push` to push those records to your Provider.
+In a nutshell, it works like this: You define your DNS zones and records in a file called `dnsconfig.js`, provide credentials for your DNS provider, and then run `dnsconfig push` to push those records to your Provider.
 
 An example config could look like this:
 
