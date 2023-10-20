@@ -37,4 +37,4 @@ I really like DnsControl for various reasons:
 - It works with [many different providers](https://docs.dnscontrol.org/service-providers/providers), which makes it easy to move from one to another. Not happy with Google anymore? Replace the provider in your `dnsconfig.js` and `dnscontrol push` - done! You can even push your zones to multiple providers at the same time if you want to be on the safe side.
 - When pushing the records, DnsControl will remove any records not in `dnsconfig.js` anymore. This really helps with keeping your zones cleaned up!
 
-And that's it! In the [next post]({{< ref "continuously-deploying-dns-records-with-dnscontrol-and-circleci" >}}), I describe how to further automate our setup and automatically deploy each change!
+And that's it! In the [next post](@/posts/2018-04-20-continuously-deploying-dns-records-with-dnscontrol-and-circleci.md), I describe how to further automate our setup and automatically deploy each change!

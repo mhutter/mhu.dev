@@ -5,7 +5,7 @@ description = "How to continuously deploy DNS records to Google Cloud DNS using 
 tags = ["dns", "ci/cd"]
 +++
 
-In the [previous post]({{< ref "managing-dns-records-the-devops-way.md" >}}) I gave a quick introduction to [DnsControl](https://stackexchange.github.io/dnscontrol/), what it does and how it works. In this post, I'll show you how to continuously deploy your changes to [Google Cloud DNS](https://cloud.google.com/dns/) using [CircleCI](https://circleci.com/).
+In the [previous post](@/posts/2018-04-19-managing-dns-records-the-devops-way.md), I gave a quick introduction to [DnsControl](https://stackexchange.github.io/dnscontrol/), what it does and how it works. In this post, I'll show you how to continuously deploy your changes to [Google Cloud DNS](https://cloud.google.com/dns/) using [CircleCI](https://circleci.com/).
 
 The goal is to have a Pipeline that works like this = On each push, run `dnscontrol check` to verify the file is valid, `dnscontrol preview` to make sure all configuration is correct (credentials, zones, ...). And if we're on the `master` branch (and the previous steps were succesful) `dnscontrol push` the changes to our DNS provider.
 
