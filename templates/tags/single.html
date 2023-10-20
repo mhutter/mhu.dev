@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">Posts tagged "{{ term.name }}"</h1>
+
+{% set posts = term.pages %}
+{% include "partials/post-list.html" %}
+
+<hr/>
+<a href="{{ get_url(path="/tags") }}">List all {{taxonomy.name}}</a>
+{% endblock content %}

@@ -7,6 +7,8 @@
 {% set posts = get_section(path="posts/_index.md") %}
 {% for page in posts.pages | slice(end=config.extra.homepage_posts) %}
   <h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
+  {% include "partials/post-meta.html" %}
+
   {% if page.summary %}
     {{ page.summary | safe }}
   {% else %}

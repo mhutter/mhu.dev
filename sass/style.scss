@@ -8,7 +8,6 @@ $color-primary: #0080ff;
 $color-code: #2b303b;
 $color-muted: darken($color-font, 30%);
 $max-width: 960px;
-$spacing: 8px;
 
 body {
   font-family: 'Noto Sans', sans-serif;
@@ -58,6 +57,9 @@ h1, h2, h3, .toc {
 strong, em {
   color: $color-hl;
 }
+time {
+  font-weight: bold;
+}
 
 hr {
   border-color: lighten($color-bg, 20%);
@@ -99,8 +101,7 @@ ul {
 
   .post {
     .toc {
-      // padding: $spacing;
-      border-radius: $spacing/2;
+      border-radius: 0.5rem;
     }
      
     pre {
@@ -113,11 +114,11 @@ ul {
   text-align: right;
 }
 
+.metadata, .metadata a {
+  color: $color-muted;
+  margin-block-end: 1rem;
+}
 .post {
-  .metadata, .metadata a {
-    color: $color-muted;
-  }
-
   .toc {
     background: lighten($color-bg, 10%);
     padding: 1rem;
@@ -179,6 +180,12 @@ ul {
       border-collapse: collapse;
     }
   }
+}
+
+.post-list {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 .page-footer {
