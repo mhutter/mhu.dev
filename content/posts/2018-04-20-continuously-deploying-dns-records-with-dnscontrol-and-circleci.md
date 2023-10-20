@@ -1,6 +1,7 @@
 +++
 title = "Continuously Deploying DNS records with DnsControl and CircleCI"
 description = "How to continuously deploy DNS records to Google Cloud DNS using CircleCI"
+aliases = ["posts/continuously-deploying-dns-records-with-dnscontrol-and-circleci"]
 [taxonomies]
 tags = ["dns", "ci/cd"]
 +++

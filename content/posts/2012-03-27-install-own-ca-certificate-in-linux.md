@@ -1,6 +1,7 @@
 +++
 title = "Install own CA-Certificate in Linux"
 description = "How to install your own CA certificate"
+aliases = ["posts/install-own-ca-certificate-in-linux"]
 [taxonomies]
 tags = ["linux"]
 +++

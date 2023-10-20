@@ -1,6 +1,7 @@
 +++
 title = "Working with Git submodules"
 summary = "Primer on how to use Git submodules"
+aliases = ["posts/working-with-git-submodules"]
 [taxonomies]
 tags = ["git"]
 +++

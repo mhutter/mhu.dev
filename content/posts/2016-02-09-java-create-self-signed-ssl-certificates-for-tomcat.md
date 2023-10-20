@@ -1,6 +1,7 @@
 +++
 title = "Java: Create self-signed TLS/SSL certificates for Tomcat"
 description = "A quick guide on how to generate a self-signed TLS certificate using the Java keytool and how to configure it in Tomcat."
+aliases = ["posts/java-create-self-signed-ssl-certificates-for-tomcat"]
 [taxonomies]
 tags = ["java", "tls"]
 +++

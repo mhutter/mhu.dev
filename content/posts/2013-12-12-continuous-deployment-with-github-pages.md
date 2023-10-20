@@ -1,6 +1,7 @@
 +++
 title = "Continuous Deployment with Github Pages"
 description = "How to let Travis CI merge into master on successful builds"
+aliases = ["posts/continuous-deployment-with-github-pages"]
 [taxonomies]
 tags = ["ci/cd"]
 +++

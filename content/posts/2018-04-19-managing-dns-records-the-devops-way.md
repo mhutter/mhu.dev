@@ -1,7 +1,7 @@
 +++
 title = "Managing DNS records the DevOps way"
 description = "How to manage DNS records in a descriptive, auditable and provider-agnostic way"
-
+aliases = ["posts/managing-dns-records-the-devops-way"]
 [taxonomies]
 tags = ["dns", "devops"]
 +++

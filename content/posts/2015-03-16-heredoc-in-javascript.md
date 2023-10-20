@@ -1,6 +1,7 @@
 +++
 title = "Heredoc in Javascript"
 description = "Javascript does not like Multiline Strings, but there's a trick!"
+aliases = ["posts/heredoc-in-javascript"]
 [taxonomies]
 tags = ["javascript"]
 +++

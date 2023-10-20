@@ -1,6 +1,7 @@
 +++
 title = "Apache: Redirect if domain name does not match"
 description = "Apache RewriteRule for requests that do NOT match a domain name"
+aliases = ["posts/apache-redirect-if-domain-name-does-not-match"]
 [taxonomies]
 tags = ["apache"]
 +++
