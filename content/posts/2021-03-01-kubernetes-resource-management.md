@@ -33,7 +33,9 @@ Limits
 
 ### Resource Types
 
-The two resource types that can be configured are CPU and Memoryfootnote:[for Kubernetes 1.14+ there's also the "huge pages" resource type, but we'll not go into those in this article].
+The two resource types that can be configured are **CPU** and **Memory**.
+
+(for Kubernetes 1.14+ there's also the "huge pages" resource type, but we'll not go into those in this article.)
 
 CPU
 : Resource requests and limits for CPU are measured in "CPU units". One CPU (vCPU/Core on cloud providers, hyper thread on bare metal) is equivalent to 1 CPU unit.
