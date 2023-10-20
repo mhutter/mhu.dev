@@ -1,25 +1,59 @@
 @use 'reset';
 @use 'base';
 
+$color-bg: #000;
+$color-font: #ddd;
+$color-hl: #fff;
+$color-primary: #0080ff;
+$color-code: #2b303b;
+$color-muted: darken($color-font, 30%);
+$max-width: 960px;
+$spacing: 8px;
+
 body {
   font-family: 'Noto Sans', sans-serif;
   font-size: 18px;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
 
-  color: #111;
-  background-color: #eee;
+  color: $color-font;
+  background-color: $color-bg;
 }
 
 // spacing
 hr,
 h1, h2, h3, h4,
 blockquote,
+footer,
 .post p {
   margin-block-start: 2rem;
 }
 
+a {
+  color: inherit;
+}
+p {
+  a, a:visited {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: $color-font;
+  }
+}
+
+strong, em {
+  color: $color-hl;
+}
+
+hr {
+  border-color: lighten($color-bg, 20%);
+}
+
 .container {
-  max-width: 960px;
+  max-width: $max-width;
   margin: 0px auto;
 }
 
@@ -28,12 +62,66 @@ blockquote,
 
   a {
     text-decoration: none;
-    color: #111;
-    font-weight: bold
+    color: $color-font;
+    // font-weight: bold;
+  }
+}
+
+header,
+h1, h2, h3,
+p {
+  padding: 0 1rem;
+}
+ul {
+  padding-right: 1rem;
+}
+
+@media screen and (min-width: $max-width) {
+  header,
+  h1, h2, h3,
+  p {
+    padding: 0px;
+  }
+  ul {
+    padding-right: 0px;
+  }
+
+  .post {
+    .toc {
+      // padding: $spacing;
+      border-radius: $spacing/2;
+    }
+     
+    pre {
+      border-radius: 0.5rem;
+    }
   }
 }
 
 .post {
+  .metadata, .metadata a {
+    color: $color-muted;
+  }
+
+  .toc {
+    background: lighten($color-bg, 10%);
+    padding: 1rem;
+    margin-block-start: 1rem;
+
+    h3 {
+      margin-block-start: 0px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+    }
+    ul li ul {
+      padding-left: 1rem;
+    }
+  }
+
   // Quotes
   blockquote {
     border-left: 1px solid #888;
@@ -44,11 +132,18 @@ blockquote,
     }
   }
 
+  // inline code
+  code {
+    background-color: $color-code;
+    border-radius: 0.2rem;
+    padding: 0.05rem 0.2rem;
+    overflow-wrap: break-word;
+  }
+
   // Syntax Highlighted code blocks
   pre {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     overflow: auto;
-    border-radius: 4px;
 
     table td {
       padding: 0;
@@ -69,4 +164,14 @@ blockquote,
       border-collapse: collapse;
     }
   }
+}
+
+.page-footer {
+  margin-block-start: 4rem;
+  margin-block-end: 4rem;
+  text-align: center;
+  font-size: 0.8em;
+}
+.page-footer, .page-footer a {
+  color: $color-muted;
 }

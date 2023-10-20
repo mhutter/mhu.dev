@@ -66,9 +66,8 @@ Usually the "power of two" suffixes (Ki, Mi, Gi, ...) are used, so if you're uns
 
 Configuring resource requests & limits is done by setting the `.spec.containers[].resources` field on a **container** spec:
 
-_Example Pod_
-
-```yaml,hl_lines=9-15
+```yaml,hl_lines=10-16
+# Example Pod
 apiVersion: v1
 kind: Pod
 metadata:

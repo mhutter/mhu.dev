@@ -3,32 +3,33 @@
 {% block content %}
 <article class="post">
   <h1 class="title">{{ page.title }}</h1>
-  <p class="metadata">
+  <header class="metadata">
     <strong>{{ page.date }}</strong>
     {% for tag in page.taxonomies.tags %}
     <a href="{{ get_taxonomy_url(kind="tags", name=tag)}}">#{{ tag }}</a>
     {% endfor %}
-  </p>
+  </header>
 
   {% if page.toc | length > 1 %}
-  <div class="toc">
-    <ul>
-    {% for h1 in page.toc %}
+    <div class="toc">
+      <ul>
+      <h3>Contents</h3>
+      {% for h1 in page.toc %}
         <li>
-            <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
-            {% if h1.children %}
-                <ul>
-                    {% for h2 in h1.children %}
-                        <li>
-                            <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+          <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+          {% if h1.children %}
+            <ul>
+              {% for h2 in h1.children %}
+                <li>
+                  <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </li>
-    {% endfor %}
-    </ul>
-  </div>
+      {% endfor %}
+      </ul>
+    </div>
   {% endif %}
 
   {{ page.content | safe }}
