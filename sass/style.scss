@@ -2,7 +2,7 @@
 @use 'base';
 
 $color-bg: #000;
-$color-font: #ddd;
+$color-font: #ccc;
 $color-hl: #fff;
 $color-primary: #0080ff;
 $color-code: #2b303b;
@@ -26,24 +26,35 @@ body {
 hr,
 h1, h2, h3, h4,
 blockquote,
+pre,
 footer,
 .post p {
   margin-block-start: 2rem;
 }
 
-a {
-  color: inherit;
+// headers
+h1, h2, h3, h4, h5, h6 {
+  color: $color-hl;
 }
-p {
+
+// links
+a, a:visited {
+  color: $color-primary;
+  text-decoration: underline;
+}
+a:hover {
+  color: $color-hl;
+}
+h1, h2, h3, .toc {
   a, a:visited {
-    color: $color-primary;
-    text-decoration: underline;
+    color: inherit;
   }
   a:hover {
-    color: $color-font;
+    color: $color-hl;
   }
 }
 
+// highlights
 strong, em {
   color: $color-hl;
 }
@@ -98,6 +109,10 @@ ul {
   }
 }
 
+.read-more {
+  text-align: right;
+}
+
 .post {
   .metadata, .metadata a {
     color: $color-muted;
@@ -133,7 +148,7 @@ ul {
   }
 
   // inline code
-  code {
+  :not(pre) code {
     background-color: $color-code;
     border-radius: 0.2rem;
     padding: 0.05rem 0.2rem;

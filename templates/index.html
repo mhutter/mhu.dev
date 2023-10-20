@@ -5,13 +5,17 @@
 <h2>Recent Posts</h2>
 
 {% set posts = get_section(path="posts/_index.md") %}
-{% for page in posts.pages | slice(end=3) %}
-<h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
-<p>{{ page.description }}</p>
+{% for page in posts.pages | slice(end=config.extra.homepage_posts) %}
+  <h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
+  {% if page.summary %}
+    {{ page.summary | safe }}
+  {% else %}
+    <p>{{ page.description }}</p>
+  {% endif %}
+  <p class="read-more"><a href="{{ page.permalink | safe }}">Read more</a></p>
+  <hr/>
 {% endfor %}
 </ul>
-
-<hr />
 
 <div class="post">
   <p><a href="{{ get_url(path='@/posts/_index.md') }}">All Blog posts</a></p>

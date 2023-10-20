@@ -27,7 +27,7 @@ Even the Token is not something to post on your Twitter.
 travis encrypt -a - GITHUB_TOKEN=your_generated_token
 ```
 
-Your token will be encrypted and automatically added to your .travis.yml file.
+Your token will be encrypted and automatically added to your `.travis.yml` file.
 
 
 ## Step 3: Add some magic to your Travis config
@@ -43,12 +43,12 @@ The first part, `[ "${TRAVIS_BRANCH}" = "stable" ] &&` only runs the following c
 
 The second part, `git push https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${TRAVIS_REPO_SLUG}.git HEAD:master'` actually pushes the currently checked out state into master.
 * `$GITHUB_TOKEN` holds our Token from above
-* `$TRAVIS_REPO_SLUG` holds 'github_username/github_repo_name' (in my case this is `mhutter/mhutte.github.io`).
+* `$TRAVIS_REPO_SLUG` holds `github_username/github_repo_name` (in my case this is `mhutter/mhutte.github.io`).
 
-+++
+---
 
 ## Back story
 
 To ensure new pages don't break Jekyll (as I managed earlier this month), I use [Travis-CI](https://travis-ci.org/).
 
-I started working on a development branch and only merging into master after the Travis build succeeded. However, being the lazy guy I am I asked myself = "Wouldn't it be nice to let Travis automatically merge into master if the build succeeds?"
+I started working on a development branch and only merging into master after the Travis build succeeded. However, being the lazy guy I am I asked myself: "Wouldn't it be nice to let Travis automatically merge into master if the build succeeds?"

@@ -12,5 +12,11 @@ taxonomies = [{name = "tags"}]
 
 [markdown]
 highlight_code = true
+render_emoji = true
+
+[slugify]
+paths_keep_dates = true
 
 [extra]
+# Number of posts to display on the home page
+homepage_posts = 5
