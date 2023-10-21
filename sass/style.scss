@@ -1,4 +1,5 @@
 @use 'reset';
+@use 'fonts';
 @use 'base';
 
 $color-bg: #000;
@@ -193,6 +194,9 @@ ul {
   margin-block-end: 4rem;
   text-align: center;
   font-size: 0.8em;
+  p {
+    margin-block-start: 4rem;
+  }
 }
 .page-footer, .page-footer a {
   color: $color-muted;

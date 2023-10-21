@@ -1,14 +1,11 @@
+{# vim: set ft=htmldjango: #}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>mhu.dev</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>{% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}</title>
   <link rel="stylesheet" type="text/css" href="{{ get_url(path='style.css', cachebust=true) }}">
 </head>
 
@@ -24,7 +21,13 @@
   </main>
   <footer class="page-footer">
     <hr />
-    &copy; 2016&ndash;2023 Manuel Hutter &middot; <a href="https://github.com/mhutter/mhu.dev">source</a>
+    <p>
+      &copy; 2011&ndash;2023 Manuel Hutter
+      &middot;
+      <a href="https://github.com/mhutter/mhu.dev">source</a>
+      &middot;
+      <a href="{{ get_url(path="@/imprint/index.md")}}">imprint</a>
+    </p>
   </footer>
 </body>
 
