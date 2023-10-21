@@ -5,7 +5,7 @@ title = "About this website"
 ## Copyright
 
 The content on this website is licensed under [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/).
-Copyright &copy; 2011-2023 Manuel Hutter. All rights reserved.
+Copyright &copy; {{ copyright() }} Manuel Hutter. All rights reserved.
 
 
 ## Privacy Policy
