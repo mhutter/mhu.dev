@@ -1,0 +1,35 @@
+{# vim: set ft=htmldjango: #}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}</title>
+  <link rel="stylesheet" type="text/css" href="{{ get_url(path='style.css', cachebust=true) }}">
+  <link rel="icon" href="{{ get_url(path='assets/favicon.png', cachebust=true) }}">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="brand"><a href="{{ get_url(path='/') }}">mhu.dev</a></h1>
+    </div>
+    <hr />
+  </nav>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="page-footer">
+    <hr />
+    <p>
+      &copy; 2011&ndash;2023 Manuel Hutter
+      &middot;
+      <a href="https://github.com/mhutter/mhu.dev">source</a>
+      &middot;
+      <a href="{{ get_url(path="@/imprint/index.md")}}">imprint</a>
+    </p>
+  </footer>
+</body>
+
+</html>

@@ -1,16 +1,17 @@
----
-title: "Kubernetes resource management and you"
-date: 2021-03-01T18:09:46+01:00
-tags: [kubernetes]
-summary: I’ll explain what scheduling and resource management exactly is, how you configure and use them, and go into some best practices.
----
++++
+title = "Kubernetes resource management and you"
+description = "I’ll explain what scheduling and resource management exactly is, how you configure and use them, and go into some best practices."
+[taxonomies]
+tags = ["kubernetes"]
++++
 
 Scheduling and resource management is a topic many Kubernetes users seem to struggle with, even though it is vital to understand it and correctly configure your workload to ensure optimal resource usage and application availability. In this article, I'll explain what scheduling and resource management exactly is, how you configure and use them, and go into some best practices.
 
+<!-- more -->
+
 I have written this article as part of my work at [VSHN AG](https://www.vshn.ch/). It was first published in the [VSHN Knowledge Base](https://kb.vshn.ch/cloud-kubernetes/explanations/kubernetes_resource_management.html). By the way, if you like this kind of stuff, [we're usually hiring](https://www.vshn.ch/en/jobs/)!
 
-**Target audience**
-: This is a technical article targeting developers deploying applications onto Kubernetes, as well as cluster administrators.
+**Target audience**: This is a technical article targeting developers deploying applications onto Kubernetes, as well as cluster administrators.
 
 ## Resource Requests & Limits on Pods & Containers
 
@@ -32,7 +33,9 @@ Limits
 
 ### Resource Types
 
-The two resource types that can be configured are CPU and Memoryfootnote:[for Kubernetes 1.14+ there's also the "huge pages" resource type, but we'll not go into those in this article].
+The two resource types that can be configured are **CPU** and **Memory**.
+
+(for Kubernetes 1.14+ there's also the "huge pages" resource type, but we'll not go into those in this article.)
 
 CPU
 : Resource requests and limits for CPU are measured in "CPU units". One CPU (vCPU/Core on cloud providers, hyper thread on bare metal) is equivalent to 1 CPU unit.
@@ -52,7 +55,7 @@ CPU requests and limits can be expressed as mCPU (milli CPU), or "millicore" as 
 The smallest allowed precision is `1m`.
 
 Memory
-: Resource requests and limits for Memory are measured in bytes. You can use the following suffixes: K, M, G, T, P, E, Ki, Mi, Gi, Ti, Pi, Ei:
+: Resource requests and limits for Memory are measured in bytes. You can use the following suffixes = K, M, G, T, P, E, Ki, Mi, Gi, Ti, Pi, Ei:
 
 - `1K` == 1000
 - `1Ki` == 1024
@@ -66,9 +69,8 @@ Usually the "power of two" suffixes (Ki, Mi, Gi, ...) are used, so if you're uns
 
 Configuring resource requests & limits is done by setting the `.spec.containers[].resources` field on a **container** spec:
 
-_Example Pod_
-
-```yaml
+```yaml,hl_lines=10-16
+# Example Pod
 apiVersion: v1
 kind: Pod
 metadata:
@@ -123,7 +125,7 @@ Word is that CERN implemented its own scheduler to achieve workload packing (= a
 
 ---
 
-### kube-scheduler
+### `kube-scheduler`
 
 Whenever kube-scheduler sees a new Pod that is not assigned to a Node (indicated by the fact that the Pod's `.spec.nodeName` is not set), it assigns the Pod to a Node in two phases:
 

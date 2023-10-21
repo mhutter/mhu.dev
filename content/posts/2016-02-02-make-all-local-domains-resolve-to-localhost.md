@@ -1,9 +1,9 @@
----
-date: 2016-02-02T13:37:00+01:00
-title: Make all *.local domains resolve to localhost
-summary: Use dnsmasq to resolve a wildcard domain on Linux
-tags: [dnsmasq, dns, centos]
----
++++
+title = "Make all *.local domains resolve to localhost"
+description = "Use dnsmasq to resolve a wildcard domain on Linux"
+[taxonomies]
+tags = ["dns", "linux"]
++++
 
 It's time for my yearly blog post, so let's get started!
 
@@ -15,7 +15,7 @@ All commands assume you have root privileges. If you are not logged in as `root`
 
 First, make sure **dnsmasq** is installed:
 
-```sh
+```
 yum install dnsmasq
 ```
 
@@ -25,10 +25,10 @@ Ok, now we have to tell dnsmasq to listen for queries. Add the following line to
 listen-address=127.0.0.1
 ```
 
-Next, create a "zone file" for `.local`. Create a file `/etc/dnsmasq.d/dev` and add the following:
+Next, create a "zone file" for `.local`. Create a file `/etc/dnsmasq.d/local` and add the following:
 
 ```
-address=/dev/127.0.0.1
+address=/local/127.0.0.1
 ```
 
 This tells dnsmasq to resolve queries to `*.local` to `127.0.0.1`.
@@ -48,14 +48,13 @@ prepend domain-name-servers=127.0.0.1;
 
 Last step: let the DHCP client apply the new settings:
 
-```sh
+```
 dhclient
 ```
 
 And that's it! Let's make a quick test:
 
 ```
-$ grep -i dev /etc/hosts
 $ ping foo.local
 PING foo.local (127.0.0.1) 56(84) bytes of data.
 64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.017 ms

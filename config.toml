@@ -1,19 +1,22 @@
-baseURL = "https://mhu.dev/"
-languageCode = "en"
-title = "mhutter"
-theme = "mhu"
-enableRobotsTXT = true
+# https://www.getzola.org/documentation/getting-started/configuration/
 
-[markup]
-  [markup.highlight]
-    style = "solarized-dark256"
-    tabWidth = 2
+base_url = "https://mhu.dev"
+title = "mhu.dev"
 
-[params]
-  subtitle = "DevOoops"
-  favicon = "/img/mh256.png"
-  logo = "/img/mh256.png"
-  description = "Online presence of Manuel Hutter"
-  github = "https://github.com/mhutter"
-  stackoverflow = "https://stackoverflow.com/users/405454/mhutter"
-  recent_posts_number = 20
+build_search_index = false
+compile_sass = true
+default_language = "en"
+minify_html = true
+
+taxonomies = [{name = "tags"}]
+
+[markdown]
+highlight_code = true
+render_emoji = true
+
+[slugify]
+paths_keep_dates = true
+
+[extra]
+# Number of posts to display on the home page
+homepage_posts = 5
