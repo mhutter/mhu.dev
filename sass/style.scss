@@ -1,13 +1,12 @@
 @use 'reset';
 @use 'fonts';
-@use 'base';
 
 $color-bg: #000;
 $color-font: #ccc;
 $color-hl: #fff;
 $color-primary: #0080ff;
 $color-code: #2b303b;
-$color-muted: darken($color-font, 30%);
+$color-muted: #888;
 $max-width: 960px;
 
 body {
@@ -28,7 +27,8 @@ h1, h2, h3, h4,
 blockquote,
 pre,
 footer,
-.post p {
+:not(li) > ul,
+p {
   margin-block-start: 2rem;
 }
 
@@ -43,7 +43,10 @@ a, a:visited {
   text-decoration: underline;
 }
 a:hover {
-  color: $color-hl;
+  color: $color-primary;
+  text-shadow:
+    0 0 2px $color-primary,
+    0 0 5px $color-primary;
 }
 h1, h2, h3, .toc {
   a, a:visited {
@@ -63,6 +66,8 @@ time {
 }
 
 hr {
+  border: none;
+  border-bottom: 1px solid;
   border-color: lighten($color-bg, 20%);
 }
 
@@ -72,40 +77,28 @@ hr {
 }
 
 .brand {
-  margin: 0;
-
   a {
     text-decoration: none;
     color: $color-font;
-    // font-weight: bold;
   }
 }
 
 header,
-h1, h2, h3,
-p {
-  padding: 0 1rem;
+h1, h2, h3, h4, h5,
+p, ul {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
-ul {
-  padding-right: 1rem;
-}
-
 @media screen and (min-width: $max-width) {
   header,
-  h1, h2, h3,
-  p {
-    padding: 0px;
-  }
-  ul {
-    padding-right: 0px;
+  h1, h2, h3, h4, h5,
+  p, ul {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .post {
-    .toc {
-      border-radius: 0.5rem;
-    }
-     
-    pre {
+    .toc, pre {
       border-radius: 0.5rem;
     }
   }
@@ -119,6 +112,14 @@ ul {
   color: $color-muted;
   margin-block-end: 1rem;
 }
+// inline code
+:not(pre) code {
+  background-color: $color-code;
+  border-radius: 0.2rem;
+  padding: 0.05rem 0.2rem;
+  overflow-wrap: break-word;
+}
+
 .post {
   .toc {
     background: lighten($color-bg, 10%);
@@ -149,14 +150,6 @@ ul {
     }
   }
 
-  // inline code
-  :not(pre) code {
-    background-color: $color-code;
-    border-radius: 0.2rem;
-    padding: 0.05rem 0.2rem;
-    overflow-wrap: break-word;
-  }
-
   // Syntax Highlighted code blocks
   pre {
     padding: 0.5rem 1rem;
@@ -185,8 +178,11 @@ ul {
 
 .post-list {
   list-style: none;
-  margin: 0px;
   padding: 0px;
+
+  time {
+    color: $color-muted;
+  }
 }
 
 .page-footer {
@@ -200,4 +196,47 @@ ul {
 }
 .page-footer, .page-footer a {
   color: $color-muted;
+}
+
+h1 {
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+}
+h2 {
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+}
+h3 {
+  font-size: 1.2em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+h4 {
+  font-size: 1.1em;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+}
+
+.tag-cloud {
+  ul {
+    list-style: none;
+    padding-left: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      display: block;
+      padding: 0.1rem 0.25rem;
+    }
+  }
+
+  // code {
+  //   display: inline-block;
+  //   word-break: keep-all;
+  //   margin: 0.4rem;
+  // }
 }

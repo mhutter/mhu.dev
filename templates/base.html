@@ -23,11 +23,10 @@
   <footer class="page-footer">
     <hr />
     <p>
-      &copy; 2011&ndash;2023 Manuel Hutter
-      &middot;
-      <a href="https://github.com/mhutter/mhu.dev">source</a>
-      &middot;
-      <a href="{{ get_url(path="@/imprint/index.md")}}">imprint</a>
+      &copy; {% include "shortcodes/copyright.html" %} Manuel Hutter
+      &middot; <a href="https://github.com/mhutter/mhu.dev">source</a>
+      &middot; <a href="{{ get_url(path="@/about/index.md")}}">about</a>
+      &middot; <a href="{{ get_url(path="@/imprint/index.md")}}">imprint</a>
     </p>
   </footer>
 </body>

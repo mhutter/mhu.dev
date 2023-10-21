@@ -1,0 +1,11 @@
+<div class="tag-cloud{% if shuffle %} shuffle{% endif %}">
+  {{ body | markdown | safe }}
+</div>
+{% if shuffle %}
+<script>
+  const l = document.querySelector('.shuffle ul');
+  for (var i = l.children.length; i >= 0; i--) {
+    l.appendChild(l.children[Math.random() * i | 0]);
+  }
+</script>
+{% endif %}

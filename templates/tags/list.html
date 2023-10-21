@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}{{ taxonomy.name }} | {{ config.title }}{% endblock title %}
+{% block title %}{{ taxonomy.name | capitalize }} | {{ config.title }}{% endblock title %}
 
 {% block content %}
-<h1 class="title">List of {{ taxonomy.name }}</h1>
+<h1 class="title">All {{ taxonomy.name }}</h1>
+<div class="tag-cloud">
 <ul class="post-list">
   {% for term in terms %}
   {% set num_posts = term.pages | length %}
   <li>
-    <a href="{{ term.permalink | safe }}">#{{ term.name }}</a>
-    ({{ num_posts }} post{{ num_posts | pluralize }})
+    <code><a href="{{ term.permalink | safe }}">#{{ term.name }}</a>
+    ({{ num_posts }} post{{ num_posts | pluralize }})</code>
   </li>
   {% endfor %}
 </ul>
+</div>
 {% endblock content %}
