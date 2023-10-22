@@ -43,4 +43,11 @@
 
   {{ page.content | safe }}
 </article>
+<hr>
+
+<p>
+{% if page.lower %}<a href="{{ page.lower.permalink | safe }}">Next post: "{{ page.lower.title }}"</a><br>{% endif %}
+{% if page.higher %}<a href="{{ page.higher.permalink | safe }}">Previous post: "{{ page.higher.title }}"</a><br>{% endif %}
+<a href="{{ get_url(path='@/posts/_index.md') }}">List all Blog posts</a>
+</p>
 {% endblock content %}
