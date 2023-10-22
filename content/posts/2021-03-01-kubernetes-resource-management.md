@@ -19,11 +19,9 @@ I have written this article as part of my work at [VSHN AG](https://www.vshn.ch/
 
 When creating a Pod in Kubernetes, it's possible to specify its resource requirements for its containers. This is done using two concepts called _requests_ and _limits_:
 
----
-
-ℹ️ Resource requests and limits are defined on a _Container_ level, however since a _Pod_ is the smallest schedulable unit I use the term "a Pod's resources" in this article. A _Pod's_ resources is simply the sum of its _Containers'_ resources.
-
----
+{% admonition(type="TIP") %}
+Resource requests and limits are defined on a _Container_ level, however since a _Pod_ is the smallest schedulable unit I use the term "a Pod's resources" in this article. A _Pod's_ resources is simply the sum of its _Containers'_ resources.
+{% end %}
 
 <dl>
 {% definition(title="Requests" ) %}
@@ -45,12 +43,6 @@ The two resource types that can be configured are **CPU** and **Memory**.
 {% definition(title="CPU") %}
 Resource requests and limits for CPU are measured in "CPU units". One CPU (vCPU/Core on cloud providers, hyper thread on bare metal) is equivalent to 1 CPU unit.
 
----
-
-💡 **TIP**: CPU units are always measured as an absolute quantity, not as relative ones. So "1 CPU unit" is the same amount of CPU on a single core system as it is on a 256 core machine. However the single core system will only have one CPU unit capacity (we'll come to that later), while the 256 core machine will have 256 CPU units capacity.
-
----
-
 CPU requests and limits can be expressed as mCPU (milli CPU), or "millicore" as they are often referred to as. Each CPU can be divided into 1000 mCPU (because, you know, that's what "milli" means).
 
 - `500m` - half a CPU
@@ -58,6 +50,10 @@ CPU requests and limits can be expressed as mCPU (milli CPU), or "millicore" as 
 - `100m` - one tenth of a CPU
 
 The smallest allowed precision is `1m`.
+{% end %}
+
+{% admonition(type="TIP") %}
+CPU units are always measured as an absolute quantity, not as relative ones. So "1 CPU unit" is the same amount of CPU on a single core system as it is on a 256 core machine. However the single core system will only have one CPU unit capacity (we'll come to that later), while the 256 core machine will have 256 CPU units capacity.
 {% end %}
 
 {% definition(title="Memory") %}
@@ -102,19 +98,15 @@ spec:
 3. CPU limits
 4. Memory limits
 
----
-
-ℹ️ Since pods usually are created by Deployments (or DeploymentConfigs if you are using OpenShift), you would instead set the deployment's `.spec.template.spec.containers[].resources` field.
-
----
+{% admonition(type="NOTE") %}
+Since pods usually are created by Deployments (or DeploymentConfigs if you are using OpenShift), you would instead set the deployment's `.spec.template.spec.containers[].resources` field.
+{% end %}
 
 It is not necessary to set _all_ of the values. For example it's possible to configure only Memory requests and CPU limits.
 
----
-
-💡 **TIP**: The usage of resourece requests and limits can be enforced using LimitRanges. They can define the range of possible values as well as **default values that will be applied if you do NOT specify any resource requests or limits**.
-
----
+{% admonition(type="TIP") %}
+The usage of resource requests and limits can be enforced using LimitRanges. They can define the range of possible values as well as **default values that will be applied if you do NOT specify any resource requests or limits**.
+{% end %}
 
 ## Scheduling
 
@@ -126,13 +118,11 @@ In order to understand resource management properly, we first have to understand
 
 The job of the scheduler is to take new Pods and assign them to a Node in the cluster.
 
----
-
-💡 It is possible to implement your own scheduler, however for most use cases the default `kube-scheduler` is sufficient -- especially since it can be [customized using scheduling policies](https://kubernetes.io/docs/reference/scheduling/policies/).
+{% admonition(type="TIP") %}
+It is possible to implement your own scheduler, however for most use cases the default `kube-scheduler` is sufficient -- especially since it can be [customized using scheduling policies](https://kubernetes.io/docs/reference/scheduling/policies/).
 
 Word is that CERN implemented its own scheduler to achieve workload packing (= avoiding workloads to be spread across nodes), however today [this can be achieved using scheduler policies](https://clouddocs.web.cern.ch/containers/tutorials/scheduling.html).
-
----
+{% end %}
 
 ### `kube-scheduler`
 
@@ -144,9 +134,11 @@ During this phase, the scheduler determines which nodes are eligible for the Pod
 
 If after this step no Nodes are left, the Pod will not be assigned to a Node and stay in "Pending" state. An Event is added to the Pod explaining why scheduling failed.
 
-💡 **TIP**: If a pod stays in "Pending", use `kubectl describe pod/<POD>` and check the "Events" section to see why it failed.
-
 [Scheduling policy predicates](https://kubernetes.io/docs/reference/scheduling/policies/) can be used to configure the _Filtering_ step of scheduling.
+{% end %}
+
+{% admonition(type="TIP") %}
+If a pod stays in "Pending", use `kubectl describe pod/<POD>` and check the "Events" section to see why it failed.
 {% end %}
 
 {% definition(title="Scoring") %}
@@ -166,11 +158,9 @@ The two most important resources are CPU and Memory (RAM). Kubernetes tracks oth
 
 Upon startup, the Kubelet determine how much resources the system it runs on has available. This is called the node's _capacity_. Next, it reserves a certain amount of CPU and Memory for itself and the system. What's left is called the Node's _allocatable_ resources. The Kubelet will communicate this information back to the control plane.
 
----
-
-💡 **TIP**: If you are cluster-admin, you can view a Node's resources using the `kubectl describe node <NODE>` command (watch for the `Capacity` and `Allocatable` keys) or in the Node object's `.status.capacity` and `.status.allocatable` fields.
-
----
+{% admonition(type="TIP") %}
+If you are cluster-admin, you can view a Node's resources using the `kubectl describe node <NODE>` command (watch for the `Capacity` and `Allocatable` keys) or in the Node object's `.status.capacity` and `.status.allocatable` fields.
+{% end %}
 
 During scheduling, this information is used to determine whether a Pod would "fit" onto a Node or not by taking a Node's _allocatable_ resources and subtracting the _requests_ of all Pods already running on the Node. If the remaining resources are greater than the _requests_ of the Pod, it will fit.
 

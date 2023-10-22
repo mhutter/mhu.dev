@@ -1,0 +1,5 @@
+{# See https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/ #}
+<div class="admonition {{ type | lower }}">
+  <span class="admonition-icon">{{ type | upper }}</span>
+  <div class="admonition-content">{{ body | markdown | safe }}</div>
+</div>
