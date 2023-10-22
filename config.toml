@@ -3,10 +3,12 @@
 base_url = "https://mhu.dev"
 title = "mhu.dev"
 description = "DevOoops"
+author = "Manuel Hutter"
 
 build_search_index = false
 compile_sass = true
 default_language = "en"
+generate_feed = true
 minify_html = true
 
 taxonomies = [{name = "tags"}]
@@ -26,4 +28,3 @@ paths_keep_dates = true
 [extra]
 # Number of posts to display on the home page
 homepage_posts = 5
-author = "Manuel Hutter"

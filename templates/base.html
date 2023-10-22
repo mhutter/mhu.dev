@@ -16,11 +16,12 @@
 
   <meta property="og:url" content="{{ current_url | safe }}">
   <meta property="og:image" content="{{ get_url(path='assets/favicon.png', cachebust=true) }}">
-  <meta name="author" content="{{ config.extra.author }}">
+  <meta name="author" content="{{ config.author }}">
   <meta name="generator" content="Zola">
 
   <link rel="stylesheet" type="text/css" href="{{ get_url(path='style.css', cachebust=true) }}">
   <link rel="icon" href="{{ get_url(path='assets/favicon.png', cachebust=true) }}">
+  <link rel="alternate" type="application/atom+xml" title="Sitewide Atom feed" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
 </head>
 
 <body>
