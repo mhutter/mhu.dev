@@ -126,8 +126,8 @@ p, ul, dl {
 
 .metadata, .metadata a {
   color: $color-muted;
-  margin-block-end: 1rem;
 }
+
 // inline code
 :not(pre) code {
   background-color: $color-code;

@@ -1,5 +1,7 @@
 <header class="metadata">
   <time datetime="{{page.date}}">{{ page.date }}</time>
+  &nbsp;
+  {{ page.reading_time }} minute read
   {% for tag in page.taxonomies.tags %}
   &nbsp;<a href="{{ get_taxonomy_url(kind="tags", name=tag)}}">#{{ tag }}</a>
   {% endfor %}
