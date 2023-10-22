@@ -25,11 +25,15 @@ When creating a Pod in Kubernetes, it's possible to specify its resource require
 
 ---
 
-Requests
-: An amount of resources that a container must have _guaranteed_ to have available. When a Pod is running on a Node, those resources will be reserved for that pod.
+<dl>
+{% definition(title="Requests" ) %}
+An amount of resources that a container must have _guaranteed_ to have available. When a Pod is running on a Node, those resources will be reserved for that pod.
+{% end %}
 
-Limits
-: As the name implies, a _limit_ of how much of a given resource the container may contain for short periods of time. I'll explain what happens when a container exceeds this limits later in this article.
+{% definition(title="Limits" ) %}
+As the name implies, a _limit_ of how much of a given resource the container may contain for short periods of time. I'll explain what happens when a container exceeds this limits later in this article.
+{% end %}
+</dl>
 
 ### Resource Types
 
@@ -37,8 +41,9 @@ The two resource types that can be configured are **CPU** and **Memory**.
 
 (for Kubernetes 1.14+ there's also the "huge pages" resource type, but we'll not go into those in this article.)
 
-CPU
-: Resource requests and limits for CPU are measured in "CPU units". One CPU (vCPU/Core on cloud providers, hyper thread on bare metal) is equivalent to 1 CPU unit.
+<dl>
+{% definition(title="CPU") %}
+Resource requests and limits for CPU are measured in "CPU units". One CPU (vCPU/Core on cloud providers, hyper thread on bare metal) is equivalent to 1 CPU unit.
 
 ---
 
@@ -53,9 +58,10 @@ CPU requests and limits can be expressed as mCPU (milli CPU), or "millicore" as 
 - `100m` - one tenth of a CPU
 
 The smallest allowed precision is `1m`.
+{% end %}
 
-Memory
-: Resource requests and limits for Memory are measured in bytes. You can use the following suffixes = K, M, G, T, P, E, Ki, Mi, Gi, Ti, Pi, Ei:
+{% definition(title="Memory") %}
+Resource requests and limits for Memory are measured in bytes. You can use the following suffixes = K, M, G, T, P, E, Ki, Mi, Gi, Ti, Pi, Ei:
 
 - `1K` == 1000
 - `1Ki` == 1024
@@ -64,6 +70,9 @@ Memory
 - ... and so on
 
 Usually the "power of two" suffixes (Ki, Mi, Gi, ...) are used, so if you're unsure what to use, stick to them.
+{% end %}
+</dl>
+
 
 ### Configuring Requests & Limits
 
@@ -129,19 +138,23 @@ Word is that CERN implemented its own scheduler to achieve workload packing (= a
 
 Whenever kube-scheduler sees a new Pod that is not assigned to a Node (indicated by the fact that the Pod's `.spec.nodeName` is not set), it assigns the Pod to a Node in two phases:
 
-Filtering
-: During this phase, the scheduler determines which nodes are eligible for the Pod to be scheduled on. In the beginning, all nodes are candidates. The scheduler then applies various filter plugins, for example: Does the Node fit the Pods `nodeSelector`? Has the Node sufficient resources available? Has the Node any taints that are not tolerated by the pod? Is the Node marked as unschedulable? Does the Pod request any special features, for example a GPU?
+<dl>
+{% definition(title="Filtering") %}
+During this phase, the scheduler determines which nodes are eligible for the Pod to be scheduled on. In the beginning, all nodes are candidates. The scheduler then applies various filter plugins, for example: Does the Node fit the Pods `nodeSelector`? Has the Node sufficient resources available? Has the Node any taints that are not tolerated by the pod? Is the Node marked as unschedulable? Does the Pod request any special features, for example a GPU?
 
-: If after this step no Nodes are left, the Pod will not be assigned to a Node and stay in "Pending" state. An Event is added to the Pod explaining why scheduling failed.
+If after this step no Nodes are left, the Pod will not be assigned to a Node and stay in "Pending" state. An Event is added to the Pod explaining why scheduling failed.
 
-: 💡 **TIP**: If a pod stays in "Pending", use `kubectl describe pod/<POD>` and check the "Events" section to see why it failed.
+💡 **TIP**: If a pod stays in "Pending", use `kubectl describe pod/<POD>` and check the "Events" section to see why it failed.
 
-: [Scheduling policy predicates](https://kubernetes.io/docs/reference/scheduling/policies/) can be used to configure the _Filtering_ step of scheduling.
+[Scheduling policy predicates](https://kubernetes.io/docs/reference/scheduling/policies/) can be used to configure the _Filtering_ step of scheduling.
+{% end %}
 
-Scoring
-: In the second phase, the remaining Nodes are ranked. Again, various scoring plugins are used.
+{% definition(title="Scoring") %}
+In the second phase, the remaining Nodes are ranked. Again, various scoring plugins are used.
 
-: The default configuration tries to spread workload as even across the cluster as possible, minimizing the impact of a node becoming unavailable.
+The default configuration tries to spread workload as even across the cluster as possible, minimizing the impact of a node becoming unavailable.
+{% end %}
+</dl>
 
 Once these two steps are completed, the scheduler will assign the Pod to the highest-ranking Node, and the Kubelet on that node will spin up its containers.
 

@@ -65,6 +65,16 @@ time {
   font-weight: bold;
 }
 
+// definition lists
+dt {
+  font-weight: bold;
+  color: $color-hl;
+  margin-block-start: 2rem;
+}
+dd > p:first-child {
+  margin-block-start: 1rem;
+}
+
 hr {
   border: none;
   border-bottom: 1px solid;
