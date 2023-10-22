@@ -1,0 +1,14 @@
+{# vim: set ft=htmldjango: #}
+{% macro meta_tags(title, description, type="website") %}
+  {% if title is not ending_with(config.title) %}
+    {% set title = title ~ " - " ~ config.title %}
+  {% endif %}
+
+  <title>{{ title }}</title>
+  <meta property="og:title" content="{{ title }}">
+
+  <meta name="description" content="{{ description }}">
+  <meta property="og:description" content="{{ description }}">
+
+  <meta property="og:type" content="{{ type }}">
+{% endmacro meta_tags %}

@@ -1,5 +1,6 @@
 +++
 title = "About this website"
+description = "Legal notices"
 +++
 
 ## Copyright

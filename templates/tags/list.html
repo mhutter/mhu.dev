@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{ taxonomy.name | capitalize }} | {{ config.title }}{% endblock title %}
+{% block meta_content %}
+  {{ macros::meta_tags(
+    title=taxonomy.name | capitalize,
+    description="All "~taxonomy.name,
+  ) }}
+{% endblock meta_content %}
 
 {% block content %}
 <h1 class="title">All {{ taxonomy.name }}</h1>

@@ -1,5 +1,6 @@
 +++
 title = "Manuel Hutter"
+description = "About the author"
 +++
 
 Hello, I'm Manuel Hutter, mostly known as `mhutter` or `dratir` on most online platforms.

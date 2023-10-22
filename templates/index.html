@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ config.title }}{% endblock title %}
-
 {% block content %}
 
 <h2>Recent Posts</h2>
 
 {% set posts = get_section(path="posts/_index.md") %}
 {% for page in posts.pages | slice(end=config.extra.homepage_posts) %}
-  <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+  <h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
   {% include "partials/post-meta.html" %}
 
   {% if page.summary %}
@@ -16,7 +14,7 @@
   {% else %}
     <p>{{ page.description }}</p>
   {% endif %}
-  <p class="read-more"><a href="{{ page.permalink }}#continue-reading">Continue reading</a></p>
+  <p class="read-more"><a href="{{ page.permalink | safe }}#continue-reading">Continue reading</a></p>
   <hr/>
 {% endfor %}
 </ul>
