@@ -15,6 +15,11 @@ taxonomies = [{name = "tags"}]
 highlight_code = true
 render_emoji = true
 
+[link_checker]
+skip_prefixes = [
+  "https://www.linkedin.com/"
+]
+
 [slugify]
 paths_keep_dates = true
 
