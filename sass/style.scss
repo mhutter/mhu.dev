@@ -23,44 +23,65 @@ body {
 
 // spacing
 hr,
-h1, h2, h3, h4,
+h1,
+h2,
+h3,
+h4,
 blockquote,
 pre,
 footer,
-:not(li) > ul,
+table,
+:not(li)>ul,
 p {
   margin-block-start: 2rem;
 }
 
 // headers
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th {
   color: $color-hl;
 }
 
 // links
-a, a:visited {
+a,
+a:visited {
   color: $color-primary;
   text-decoration: underline;
 }
+
 a:hover {
   color: $color-primary;
   text-shadow:
     0 0 2px $color-primary,
     0 0 5px $color-primary;
 }
-h1, h2, h3, .toc {
-  a, a:visited {
+
+h1,
+h2,
+h3,
+.toc {
+
+  a,
+  a:visited {
     color: inherit;
   }
+
   a:hover {
     color: $color-hl;
   }
 }
 
 // highlights
-strong, em {
+strong,
+em {
   color: $color-hl;
 }
+
 time {
   font-weight: bold;
 }
@@ -71,10 +92,12 @@ dt {
   color: $color-hl;
   margin-block-start: 2rem;
 }
+
 dd {
   margin-inline-start: 1rem;
 }
-dd > p:first-child {
+
+dd>p:first-child {
   margin-block-start: 1rem;
 }
 
@@ -97,15 +120,29 @@ hr {
 }
 
 header,
-h1, h2, h3, h4, h5,
-p, ul, dl {
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul,
+dl {
   margin-left: 1rem;
   margin-right: 1rem;
 }
+
 @media screen and (min-width: $max-width) {
+
   header,
-  h1, h2, h3, h4, h5,
-  p, ul, dl {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  ul,
+  dl {
     margin-left: 0px;
     margin-right: 0px;
   }
@@ -113,8 +150,11 @@ p, ul, dl {
   .admonition-content {
     border-radius: 0.5rem;
   }
+
   .post {
-    .toc, pre {
+
+    .toc,
+    pre {
       border-radius: 0.5rem;
     }
   }
@@ -124,7 +164,8 @@ p, ul, dl {
   text-align: right;
 }
 
-.metadata, .metadata a {
+.metadata,
+.metadata a {
   color: $color-muted;
 }
 
@@ -151,6 +192,7 @@ p, ul, dl {
       margin: 0px;
       padding: 0px;
     }
+
     ul li ul {
       padding-left: 1rem;
     }
@@ -174,6 +216,7 @@ p, ul, dl {
     table td {
       padding: 0;
     }
+
     // line number cell
     table td:nth-of-type(1) {
       text-align: center;
@@ -206,11 +249,14 @@ p, ul, dl {
   margin-block-end: 4rem;
   text-align: center;
   font-size: 0.8em;
+
   p {
     margin-block-start: 4rem;
   }
 }
-.page-footer, .page-footer a {
+
+.page-footer,
+.page-footer a {
   color: $color-muted;
 }
 
@@ -219,16 +265,19 @@ h1 {
   margin-block-start: 0.67em;
   margin-block-end: 0.67em;
 }
+
 h2 {
   font-size: 1.5em;
   margin-block-start: 0.83em;
   margin-block-end: 0.83em;
 }
+
 h3 {
   font-size: 1.2em;
   margin-block-start: 1em;
   margin-block-end: 1em;
 }
+
 h4 {
   font-size: 1.1em;
   margin-block-start: 1.33em;
@@ -254,6 +303,7 @@ h4 {
 // admonition blocks
 .admonition {
   margin-block-start: 1rem;
+
   .admonition-icon {
     position: relative;
     top: 0.5rem;
