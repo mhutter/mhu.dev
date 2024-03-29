@@ -125,7 +125,7 @@ Some notes on the options used
 
 * `--eval` can be left off if `sandbox.nix` is called `default.nix` instead
 * `--strict` causes the whole expression to be evaluated recursively. Since Nix is lazy, we would just see `<CODE>` instead.
-* `-A conifg` selects the `config` attribute of the resulting expression. You can leave it off to get the _whole_ expression (not very useful), or set it to something like `config.mymodule.fullName` to get a specific value.
+* `-A config` selects the `config` attribute of the resulting expression. You can leave it off to get the _whole_ expression (not very useful), or set it to something like `config.mymodule.fullName` to get a specific value.
 * `--json` can be used to output JSON instead of a Nix expression, but that only works if the output does not contain any lambdas or functions. Actually, this helped me find a bug once, where I only referenced a function instead of calling it!
 
 And then using a bit of `entr` and `jq`, we get:
