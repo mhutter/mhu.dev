@@ -4,13 +4,11 @@ title = "Developing NixOS (and Home Manager) Modules"
 tags = ["nixos", "nix"]
 +++
 
-
 If you use NixOS or Home Manager, chances are that you have (unknowingly) created a NixOS module. In this post, I'll document my learnings around how they work, and how to easily test them in isolation.
 
 <!-- more -->
 
 Also note that for the sake of my sanity, I'll only talk about NixOS in this post, but the same concepts also apply to HomeManager.
-
 
 # What are modules?
 
@@ -37,26 +35,27 @@ But to show the full structure, a minimal example would _actually_ look like thi
 
 {
   imports = [ ];
-  
+
   options = { };
-  
+
   config = {
     services.openssh.enable = true;
   };
 }
 ```
 
-* The Nix expression can be a function which will then be called. In this example, we ignore all arguments, but the following commonly used things are (amongst others) passed to all modules:
+- The Nix expression can be a function which will then be called. In this example, we ignore all arguments, but the following commonly used things are (amongst others) passed to all modules:
   - `lib` - the nixpkgs library
   - `config` - the final configuration of all the modules
   - `options` - options declared in all modules
   - `pkgs` - nixpkgs packages - though this is specific
-- The resulting expression has three valid attributes, all of which can be omitted if empty:
+
+* The resulting expression has three valid attributes, all of which can be omitted if empty:
   - `imports` allows you to import other modules
   - `options` to define our own options
   - `config` to set options in other modules
 
-# Defining  Options
+# Defining Options
 
 In modules, we can define our own options:
 
@@ -86,7 +85,7 @@ in
       };
     };
   };
-  
+
   config = {
     mymodule.fullName = "${cfg.firstName} ${cfg.lastName}";
   };
@@ -123,10 +122,10 @@ nix-instantiate --eval ./sandbox.nix --strict -A config
 
 Some notes on the options used
 
-* `--eval` can be left off if `sandbox.nix` is called `default.nix` instead
-* `--strict` causes the whole expression to be evaluated recursively. Since Nix is lazy, we would just see `<CODE>` instead.
-* `-A config` selects the `config` attribute of the resulting expression. You can leave it off to get the _whole_ expression (not very useful), or set it to something like `config.mymodule.fullName` to get a specific value.
-* `--json` can be used to output JSON instead of a Nix expression, but that only works if the output does not contain any lambdas or functions. Actually, this helped me find a bug once, where I only referenced a function instead of calling it!
+- `--eval` can be left off if `sandbox.nix` is called `default.nix` instead
+- `--strict` causes the whole expression to be evaluated recursively. Since Nix is lazy, we would just see `<CODE>` instead.
+- `-A config` selects the `config` attribute of the resulting expression. You can leave it off to get the _whole_ expression (not very useful), or set it to something like `config.mymodule.fullName` to get a specific value.
+- `--json` can be used to output JSON instead of a Nix expression, but that only works if the output does not contain any lambdas or functions. Actually, this helped me find a bug once, where I only referenced a function instead of calling it!
 
 And then using a bit of `entr` and `jq`, we get:
 
@@ -135,11 +134,8 @@ ls -1 *.nix | \
 entr sh -c 'nix-instantiate --eval ./sandbox.nix --strict -A config --json | jq'
 ```
 
-
 # Further reading
 
-* [Module system deep dive — nix.dev  documentation](https://nix.dev/tutorials/module-system/module-system.html)
-* ["Writing NixOS Modules" in the NixOS manual](https://nixos.org/manual/nixos/stable/index.html#sec-writing-modules)
-* ["Writing Home Manager Modules" in the Home Manager manual](https://nix-community.github.io/home-manager/index.xhtml#ch-writing-modules)
-
-
+- [Module system — nix.dev documentation](https://nix.dev/tutorials/module-system/index.html)
+- ["Writing NixOS Modules" in the NixOS manual](https://nixos.org/manual/nixos/stable/index.html#sec-writing-modules)
+- ["Writing Home Manager Modules" in the Home Manager manual](https://nix-community.github.io/home-manager/index.xhtml#ch-writing-modules)
