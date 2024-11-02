@@ -9,5 +9,14 @@
       devShell."${system}" = pkgs.mkShell {
         packages = with pkgs; [ zola ];
       };
+
+      packages."${system}".default = pkgs.stdenv.mkDerivation {
+        inherit system;
+        name = "mhu-dev";
+        src = pkgs.lib.cleanSource ./.;
+        buildPhase = ''
+          ${pkgs.zola}/bin/zola build --output-dir "$out"
+        '';
+      };
     };
 }
